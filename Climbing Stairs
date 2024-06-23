@@ -1,0 +1,10 @@
+class Solution(object):
+    def climbStairs(self, n):
+        prev=0
+        prev1=1
+        for i in range(n+1):
+            temp=prev
+            prev=prev+prev1
+            prev1=temp
+        return prev
+    
