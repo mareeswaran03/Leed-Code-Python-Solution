@@ -1,0 +1,34 @@
+#First try of this problem using sliding window algorithm
+
+class Solution:
+    def findMaxAverage(self, nums: List[int], k: int) -> float:
+        sum=0
+        for i in range(0,k):
+            sum+=nums[i]
+        maxsum=sum
+
+        StartIndex=0
+        EndIndex=k
+        while EndIndex<len(nums):
+            sum-=nums[StartIndex]
+            StartIndex+=1
+
+            sum+=nums[EndIndex]
+            EndIndex+=1
+            
+            maxsum= max(maxsum,sum)
+        return maxsum/k
+
+#Final try, It's optimized version of the above program
+
+class Solution:
+    def findMaxAverage(self, nums: List[int], k: int) -> float:
+        Sum = 0
+        for i in nums[:k]:
+            Sum+=i
+        maxSum = Sum
+        for i in range(k,len(nums)):
+            Sum = Sum - nums[i-k] + nums[i]
+            if Sum > maxSum:
+                maxSum=Sum
+        return maxSum/k
