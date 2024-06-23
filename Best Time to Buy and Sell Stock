@@ -1,0 +1,54 @@
+#First try, I can only solve the given test cases
+prices= [7,6,4,3,1]
+min = prices[0]
+
+for i in range(len(prices)):
+    if prices[i]<min:
+        min=prices[i]
+        index= i
+
+max= prices[index]
+
+for i in range(index,len(prices)):
+    if prices[i]>max:
+        max = prices[i]
+
+res=max-min
+return res
+print(res)
+
+#Second try, In this i solve this problem using slinding window algorithm with 778 ms runtime
+
+prices= [1,2,4,2,5,7,2,4,9,0,9] #output : 9
+
+left = 0 #Buying index
+right= 1 #Selling index
+maxProfit=0
+Profit=0
+while right<len(prices):
+    if prices[left]>prices[right]:
+        left=right
+        right+=1
+    else:
+        Profit=prices[right]-prices[left]
+        right+=1
+    maxProfit=max(maxProfit,Profit)
+
+print(maxProfit)
+
+#Final version of my code, i optimized the above code for better performance.
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        left = 0 #Buying index
+        right= 1 #Selling index
+        maxProfit=0
+        while right<len(prices):
+            if prices[right]>prices[left]:
+                Profit=prices[right]-prices[left]
+                if Profit>maxProfit:
+                    maxProfit=Profit
+            else:
+                left=right
+            
+            right+=1
+        return maxProfit
