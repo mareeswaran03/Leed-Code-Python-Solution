@@ -1,0 +1,28 @@
+#In the below code, I have used Hashset to check the duplicates in the given array.
+
+class Solution:
+    def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:
+        hashSet= set()
+        L=0
+
+        for R in range(len(nums)):
+            if R-L>k:
+                hashSet.remove(nums[L])
+                L+=1
+            if nums[R] in hashSet:
+                return True
+            else:
+                hashSet.add(nums[R])
+        return False
+
+#Finally, I try to optimize the code using dictionary.
+
+class Solution:
+    def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:
+        hashMap= {}
+        for i in range(len(nums)):
+            if nums[i] in hashMap and abs(hashMap[nums[i]]-i)<=k:
+                return True
+            else:
+                hashMap[nums[i]]=i
+        return False
