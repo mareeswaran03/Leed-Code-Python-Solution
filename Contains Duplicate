@@ -1,0 +1,38 @@
+#On my first try, i simply done the bruteforce method for this Problem.
+#The below code takes much time to execute the larger array.
+#i can only solve the given test cases not the hidden test case.
+
+def containsDuplicate():
+        nums =[1,2,3,4]
+        dummy=[]
+        for i in nums:
+            if i not in dummy:
+                dummy.append(i)
+        if nums==dummy:
+             return False
+        else:
+             return True
+
+#This problem can be solved by sorting method also but it also take some time to compute
+
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        nums.sort()
+        for i in range(len(nums)-1):
+            if nums[i]==nums[i+1]:
+                return True
+        return False 
+#Final optimized version
+#So, i go to HASHSET for finding the duplicates in the array
+
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        hashSet= set()
+        for i in nums:
+            if i in hashSet:
+                return True
+            else:
+                hashSet.add(i)
+        return False   
+
+
