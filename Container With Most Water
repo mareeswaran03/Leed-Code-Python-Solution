@@ -1,0 +1,28 @@
+#In brute force method, i can only solve the given test cases but i can't solve the hidden test case because it consumes more time to compute it error with time exceeding error
+
+class Solution:
+    def maxArea(self, height: List[int]) -> int:
+        res=0
+        for l in range(len(height)):
+            for r in range(l+1,len(height)):
+                area=(r-l)*min(height[l],height[r])
+                res = max(res,area)
+        
+        return res
+
+  #Final optimized version, I have used two pointers to solve this problem
+
+  class Solution:
+    def maxArea(self, height: List[int]) -> int:
+        left=0
+        right= len(height)-1
+        result=0
+        while left<right:
+            area=(right-left)*min(height[left],height[right])
+            result=max(result,area)
+
+            if height[left]<height[right]:
+                left+=1
+            else:
+                right-=1
+        return result
