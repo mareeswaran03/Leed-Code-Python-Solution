@@ -1,0 +1,21 @@
+class Solution:
+    def countDistinctIntegers(self, nums: List[int]) -> int:
+        dummy=nums.copy()
+        hashset=set()
+        for item in dummy:
+            rev=0
+            if item <10:
+                nums.append(item)
+            else:
+                while item!=0:  
+                    last=item%10
+                    rev=(rev*10)+last
+                    item=item//10
+                nums.append(rev)
+        for i in nums:
+            if i in hashset:
+                pass
+            else:
+                hashset.add(i)
+        
+        return len(hashset)
