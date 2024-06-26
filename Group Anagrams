@@ -1,0 +1,15 @@
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        mapping={}
+        lst=[]
+        for i in strs:
+            res = ''.join(sorted(i))
+            if res not in mapping:
+                mapping[res]=[i]
+            else:
+                upd= list(mapping[res])
+                upd.append(i)
+                mapping[res]=upd
+        for val in mapping:
+            lst.append(mapping[val])
+        return lst
