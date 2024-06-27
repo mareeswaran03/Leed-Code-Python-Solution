@@ -6,28 +6,39 @@
 
 class Solution:
     def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
+    #Initialize the two list in separate variable
         lst1=headA
         lst2=headB
+    #Here we need to take the length of the first linked List
+    #So, i traverse the list1 until it reaches the None 
         countA=0
         while lst1:
             countA+=1
             lst1=lst1.next
+    #Here we need to take the length of the second linked List
+    #So, i traverse the list2 until it reaches the None 
         countB=0
         while lst2:
             countB+=1
             lst2=lst2.next
+    #After take the length of the two linked list
+    #We need to calculate the difference of that count
         if countA<countB:
-            listL=headB
+            listL=headB     #Again initialize the headB to check that are intersect are not.
             diff=countB-countA
-            listS=headA
+            listS=headA      #Again initialize the headA to check that are intersect are not.
         else:
-            listL=headA
+            listL=headA      #Again initialize the headA to check that are intersect are not.
             diff=countA-countB
-            listS=headB
+            listS=headB      #Again initialize the headB to check that are intersect are not.
+
+    #Here We need to move the Longer List to match the length of the Shorter List
         i=0
         while i<diff:
             i+=1
             listL=listL.next 
+    #After move the longer list to equalize the list size 
+    #After that, we need to check the listL element and listS element are same are not for identify the intersection node
         
         while listL!=listS:
             listL=listL.next
