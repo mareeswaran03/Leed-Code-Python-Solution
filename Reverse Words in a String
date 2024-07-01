@@ -1,0 +1,35 @@
+#first approach
+
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        str=s.strip()
+        lst=str.split(" ")
+        for i in range(len(lst)):
+            if "" in lst:
+                lst.remove("")
+        rev_all=" "
+        for i in range(len(lst)):
+            rev=lst[i][::-1]
+            rev_all=rev_all+rev+" "
+        return rev_all[::-1].strip()
+
+#second approach
+
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        s = s.split()
+        l, r = 0, len(s) - 1
+
+        while l < r:
+            s[l], s[r] = s[r], s[l]
+            l += 1
+            r -= 1
+
+        return " ".join(s)
+
+#optimal solution
+
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        x = s.split()
+        return " ".join(x[::-1])
