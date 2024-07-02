@@ -94,7 +94,58 @@ class doubly_linked_list:
                 else:
                     self.head=new_node
                 n.plink=new_node
+    
+    def delete_begin(self):
+        if self.head is None:
+            print("The Doubly Linked List is empty Can't Delete the Node")
+            return
+        if self.head.nlink is None:
+            self.head=None
+            print("DLL is empty after delete the first Node")
+        else:
+            self.head=self.head.nlink
+            self.head.plink=None
+    
+    def delete_end(self):
+        if self.head is None:
+            print("The Doubly Linked List is empty Can't Delete the Node")
+            return
+        if self.head.nlink is None:
+            self.head=None
+            print("DLL is empty after delete the last Node")
+        else:
+            n=self.head
+            while n.nlink is not None:
+                n=n.nlink
+            n.plink.nlink=None
 
+    def delete_by_value(self,val):
+        if self.head is None:
+            print("The Doubly Linked List is empty Can't Delete the Node")
+            return
+        if self.head.nlink is None:
+            if self.head.data==val:
+                self.head=None
+            else:
+                print("The Given Value is not Present in the Doubly LL")
+            return        
+        if self.head.data==val:
+            self.head=self.head.nlink
+            self.head.plink=None
+        n=self.head.nlink
+        while n.nlink is not None:
+            if n.data==val:
+                break
+            n=n.nlink
+        if n.nlink is not None:
+            n.plink.nlink=n.nlink
+            n.nlink.plink=n.plink
+        else:
+            if n.data==val:
+                n.plink.nlink=None
+            else:
+                print("The Given Value is not Present in the Doubly LL")
+        
 
 DLL=doubly_linked_list()
 DLL.add_empty(10)
@@ -102,6 +153,9 @@ DLL.add_begin(20)
 DLL.add_end(1002)
 DLL.add_after(150,1002)
 DLL.add_before(300,20)
+DLL.delete_begin()
+DLL.delete_end()
+DLL.delete_by_value(1002)
 DLL.Traverse_DLL()
 DLL.Traverse_DLL_reverse()
 
