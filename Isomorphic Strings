@@ -1,0 +1,30 @@
+#Brute force approach
+class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        if  len(set(s))!=len(set(t)):
+            return False
+        else:
+            res=""
+            hashMap={}
+            for i in range(len(s)):
+                hashMap[s[i]]=t[i]
+            for i in range(len(s)):
+                if t[i]==hashMap[s[i]]:
+                    res+=hashMap[s[i]]
+            if t==res:
+                return True
+            else:
+                return False
+
+#Optimized version
+class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        hashMap = {}
+        for i in range(len(s)):
+            if s[i] in hashMap:
+                if hashMap[s[i]] != t[i]:
+                    return False
+            else:
+                hashMap[s[i]] = t[i]
+
+        return True and len(set(hashMap.keys())) == len(set(hashMap.values()))
