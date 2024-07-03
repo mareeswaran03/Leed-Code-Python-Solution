@@ -1,0 +1,56 @@
+#Brute force Approach
+
+class Solution:
+    def maxDepth(self, s: str) -> int:
+        s1=""
+        for i in range(len(s)):
+            if "(" in s[i] or ")" in s[i]:
+                s1+=s[i]
+        lst1=[]
+        count=0
+        maxi=0
+        for i in range(len(s1)):
+            if s1[i] =="(":
+                lst1.append(s1[i])
+                count+=1
+            else:
+                lst1.pop()
+                count-=1
+            maxi=max(maxi,count)
+        return maxi
+
+
+#After removed extra space used in the above code by removing list 
+
+
+class Solution:
+    def maxDepth(self, s: str) -> int:
+        s1=""
+        for i in range(len(s)):
+            if "(" in s[i] or ")" in s[i]:
+                s1+=s[i]
+        count=0
+        maxi=0
+        for i in range(len(s1)):
+            if s1[i] =="(":
+                count+=1
+            else:
+                count-=1
+            maxi=max(maxi,count)
+        return maxi
+
+
+#The final and Optimized version of this problem using two pointers
+
+
+class Solution:
+    def maxDepth(self, s: str) -> int:
+        count=0
+        maxi=0
+        for i in range(len(s)):
+            if s[i] =="(":
+                count+=1
+            elif s[i]==")":
+                count-=1
+            maxi=max(maxi,count)
+        return maxi
