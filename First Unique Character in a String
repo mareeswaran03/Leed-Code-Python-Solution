@@ -1,0 +1,23 @@
+#using HashMap
+class Solution:
+    def firstUniqChar(self, s: str) -> int:
+        hashMap={}
+        for ch in s:
+            if ch in hashMap:
+                hashMap[ch]+=1
+            else:
+                hashMap[ch]=1
+
+        for i, ch in enumerate(s):
+            if hashMap[ch]==1:
+                return i
+        return -1
+
+#Using Collection.Counter() Module
+class Solution:
+    def firstUniqChar(self, s: str) -> int:
+        l = Counter(s)
+        for i,j in l.items(): # i = letter, j = occurences
+            if j==1: 
+                return s.index(i)
+        return -1
