@@ -1,0 +1,27 @@
+#using Heapq 
+
+class Solution:
+    def minDifference(self, nums: List[int]) -> int:
+        if len(nums)<=4:
+            return 0
+        smallest_four=sorted(heapq.nsmallest(4,nums))
+        largest_four=sorted(heapq.nlargest(4,nums))
+        min_diff=float("inf")
+        for i in range(4):
+            min_diff=min(min_diff,largest_four[i]-smallest_four[i])
+        return min_diff
+
+#using two pointers
+class Solution:
+    def minDifference(self, nums: List[int]) -> int:
+        if len(nums)<=4:
+            return 0
+        nums.sort()
+        l,r=0,len(nums)-4
+        diff=nums[r]-nums[l]
+
+        while r<len(nums):
+            diff=min(diff,nums[r]-nums[l])
+            l+=1
+            r+=1
+        return diff
