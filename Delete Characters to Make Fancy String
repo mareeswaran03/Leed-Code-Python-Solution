@@ -1,0 +1,7 @@
+class Solution:
+    def makeFancyString(self, s: str) -> str:
+        for i in set(s):
+            if s.count(i)>2:
+                while i*3 in s:
+                    s=s.replace(i*3,i*2)
+        return s
