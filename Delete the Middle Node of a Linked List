@@ -1,0 +1,70 @@
+#This code is working but takes much time to execute the largest linked list.
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def deleteMiddle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if head.next is None:
+            head=None
+        slow,fast=head,head
+        while fast and fast.next:
+            slow=slow.next
+            fast=fast.next.next
+        curr=head
+        print(slow)
+        while curr and curr.next:
+            if curr.next==slow:
+                curr.next=slow.next
+            curr=curr.next
+
+        return head
+
+#The optimized version of the above code
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def deleteMiddle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        dummy=ListNode(0)
+        dummy.next=head
+        slow=dummy
+        fast=dummy
+        while fast and fast.next and fast.next.next:
+            slow=slow.next
+            fast=fast.next.next
+        slow.next=slow.next.next
+        return dummy.next
+        
+
+#Without using dummy Node
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def deleteMiddle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if head.next is None:
+            return head.next
+        slow=head
+        fast=head.next.next
+        while fast and fast.next:
+            slow=slow.next
+            fast=fast.next.next
+        slow.next=slow.next.next
+        return head
+        
+        
+
+
+
+
+        
+
