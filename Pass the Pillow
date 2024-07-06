@@ -1,0 +1,11 @@
+class Solution:
+    def passThePillow(self, n: int, time: int) -> int:
+        cycle=abs(time//(n-1))
+        hops_pending=abs(time%(n-1))
+        ans=0
+        if cycle%2==0:
+            ans=1+hops_pending
+        else:
+            ans=n-hops_pending
+        return ans
+
