@@ -1,0 +1,44 @@
+#Using Brute force approach it works for a given test case for the hidden test cases it cannot work because it takes much time for excute when the list is so big in size 
+
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        m=1
+        mul=[]
+        for i in range(len(nums)):
+            for j in range(len(nums)):
+                if i==j:
+                    continue
+                else:
+                    m=m*nums[j]
+            mul.append(m)
+            m=1
+        return mul
+
+#using extra spaces
+
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        left=list(range(len(nums)))
+        right=list(range(len(nums)))
+        ans=list(range(len(nums)))
+        left[0]=1
+        for i in range(1,len(nums)):
+            left[i]=left[i-1]*nums[i-1]
+
+        right[len(nums)-1]=1
+        for i in range(len(nums)-2,-1,-1):
+            right[i]=right[i+1]*nums[i+1]
+
+        for i in range(len(nums)):
+            ans[i]=left[i]*right[i]
+        return ans
+
+        '''
+        1,2,3,4
+        left
+        1,1,2,6
+        right 
+        24,12,4,1
+        ans 
+        24,12,8,6
+        '''
