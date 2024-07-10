@@ -1,0 +1,11 @@
+class Solution:
+    def minOperations(self, logs: List[str]) -> int:
+        curr=0
+        for i in logs:
+            if i =="../":
+                curr-=1 if curr>0 else 0
+            elif i=="./":
+                continue
+            else:
+                curr+=1
+        return curr
