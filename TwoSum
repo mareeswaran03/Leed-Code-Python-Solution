@@ -4,6 +4,17 @@ class Solution(object):
             for j in range(i+1,len(nums)):
                 if((nums[i]+nums[j])==target):
                     return [i,j]
+
+
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        hashMap=dict()
+        for i in range(len(nums)):
+            req_num=target-nums[i]
+            if(req_num in hashMap):
+                return [hashMap[req_num],i]
+            else:
+                hashMap[nums[i]]=i
         
         
         
