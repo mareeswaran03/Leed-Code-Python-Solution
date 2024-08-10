@@ -1,0 +1,35 @@
+//Brute force approach
+
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        hashmap=dict()
+        for ch in s:
+            if ch in hashmap:
+                hashmap[ch]+=1
+            else:
+                hashmap[ch]=1
+        for ch1 in t:
+            if ch1 in hashmap:
+                hashmap[ch1]-=1
+            else:
+                hashmap[ch1]=1
+        
+        for val in hashmap.values():
+            if val!=0:
+                return False
+        return True
+
+//Optimized version
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        if len(s) == len(t):
+            for char in set(t):
+                if s.count(char) != t.count(char):
+                    return False
+            return True
+            
+        return False
+
+
+
+        
